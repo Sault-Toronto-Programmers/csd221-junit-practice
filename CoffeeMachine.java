@@ -86,10 +86,7 @@ public class CoffeeMachine {
         cash *= amount;
     }
 
-    public void buy(){
-        System.out.println();
-        System.out.print("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu: ");
-        String choice = scan.next();
+    public void buy(String choice){
         switch (choice) {
             case "1": {
                 if (canMakeCoffee(250, 0, 16)) {
@@ -120,20 +117,7 @@ public class CoffeeMachine {
         }
 
     }
-    public void fill() {
-
-        System.out.println("Write how many ml of water do you want to add: ");
-        int waterAdd = scan.nextInt();
-
-        System.out.println("Write how many ml of milk do you want to add: ");
-        int milkAdd = scan.nextInt();
-
-        System.out.println("Write how many grams of coffee beans do you want to add: ");
-        int beansAdd = scan.nextInt();
-
-        System.out.println("Write how many disposable cups of coffee do you want to add: ");
-        int cupsAdd = scan.nextInt();
-
+    public void fill(int waterAdd, int milkAdd, int beansAdd, int cupsAdd) {
         water += waterAdd;
         milk += milkAdd;
         beans += beansAdd;
@@ -172,10 +156,25 @@ class Runner{
             CoffeeMachine machine1 = new CoffeeMachine(400, 540, 120, 9, 550);
             switch (action) {
                 case "buy":
-                    machine1.buy();
+                    System.out.println();
+                    System.out.print("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu: ");
+                    String choice = scan.next();
+                    machine1.buy(choice);
                     break;
                 case "fill":
-                    machine1.fill();
+                    System.out.println("Write how many ml of water do you want to add: ");
+                    int waterAdd = scan.nextInt();
+
+                    System.out.println("Write how many ml of milk do you want to add: ");
+                    int milkAdd = scan.nextInt();
+
+                    System.out.println("Write how many grams of coffee beans do you want to add: ");
+                    int beansAdd = scan.nextInt();
+
+                    System.out.println("Write how many disposable cups of coffee do you want to add: ");
+                    int cupsAdd = scan.nextInt();
+
+                    machine1.fill(waterAdd, milkAdd, beansAdd, cupsAdd);
                     break;
                 case "take":
                     machine1.collect();
